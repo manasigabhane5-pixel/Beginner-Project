@@ -1,3 +1,2 @@
-# Mini projects
+#Beginner Projects
 
-There are only mini projects here
