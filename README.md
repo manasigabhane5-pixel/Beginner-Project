@@ -1,2 +1,3 @@
-# Beginner-Project
-This is my first project
+# Mini projects
+
+There are only mini projects here
