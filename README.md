@@ -1,2 +1,2 @@
-#Beginner Projects
+Personal Projects
 
