@@ -1,0 +1,732 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopit - Online Shopping</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5fffd;
+            color: #1f3d3a;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #d9f0ec;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 700;
+            color: #159b8a;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #333;
+        }
+
+        /* SEARCH BAR */
+
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 13px 50px 13px 20px;
+            border: 1px solid #b8ded8;
+            border-radius: 30px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            background: #f8fffe;
+            transition: 0.3s;
+        }
+
+        .search-container input:focus {
+            border-color: #159b8a;
+            box-shadow: 0 0 0 3px rgba(21,155,138,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 19px;
+            color: #159b8a;
+        }
+
+        /* HEADER ICONS */
+
+        .header-actions {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .header-actions a {
+            text-decoration: none;
+            color: #315c57;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .header-actions a:hover {
+            color: #159b8a;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 45px;
+            padding: 12px;
+            border-top: 1px solid #edf7f5;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #315c57;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #159b8a;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 420px;
+            background: linear-gradient(120deg, #dff9f4, #bdeee7);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 8%;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 530px;
+        }
+
+        .hero-content small {
+            color: #138c7d;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .hero-content h1 {
+            font-size: 45px;
+            line-height: 1.2;
+            margin: 15px 0;
+            color: #174c46;
+        }
+
+        .hero-content p {
+            color: #54736f;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #159b8a;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .shop-btn:hover {
+            background: #10796c;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            width: 420px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(21,155,138,0.18);
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .section {
+            padding: 65px 8%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 29px;
+            color: #214d48;
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            font-size: 14px;
+            color: #76908d;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e0f0ee;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(20,120,110,0.13);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .category-info {
+            padding: 18px;
+            text-align: center;
+        }
+
+        .category-info h3 {
+            font-size: 18px;
+            color: #214d48;
+            margin-bottom: 5px;
+        }
+
+        .category-info p {
+            font-size: 13px;
+            color: #819793;
+        }
+
+        .explore {
+            display: inline-block;
+            margin-top: 12px;
+            color: #159b8a;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            background: #edf9f7;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 17px;
+        }
+
+        .product-details h3 {
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .rating {
+            color: #e5a929;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #159b8a;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #164d47;
+            color: white;
+            padding: 50px 8% 25px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 35px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-column p {
+            color: #c4dedb;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #c4dedb;
+            text-decoration: none;
+            font-size: 13px;
+            margin: 9px 0;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 20px;
+            text-align: center;
+            color: #b8d2cf;
+            font-size: 12px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .top-bar {
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                height: auto;
+            }
+
+            .search-container {
+                order: 3;
+                flex-basis: 100%;
+            }
+
+            .hero {
+                text-align: center;
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .hero-image {
+                width: 80%;
+            }
+
+            .categories,
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .header-actions {
+                gap: 10px;
+            }
+
+            nav {
+                gap: 15px;
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 240px;
+            }
+
+            .categories,
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 45px 6%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="top-bar">
+
+            <div class="logo">
+                Shop<span>it</span>
+            </div>
+
+            <div class="search-container">
+                <input type="text" placeholder="Search for products, brands and more...">
+                <span class="search-icon">⌕</span>
+            </div>
+
+            <div class="header-actions">
+                <a href="#">♡ Wishlist</a>
+                <a href="#">🛒 Cart</a>
+                <a href="#">Login</a>
+            </div>
+
+        </div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Cosmetics</a>
+            <a href="#">Clothes</a>
+            <a href="#">Footwear</a>
+            <a href="#">Electronics</a>
+            <a href="#">New Arrivals</a>
+            <a href="#">Offers</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <small>WELCOME TO SHOPIT</small>
+
+            <h1>
+                Everything You Love,
+                All In One Place.
+            </h1>
+
+            <p>
+                Discover fashion, beauty, footwear and electronics
+                curated specially for your everyday lifestyle.
+            </p>
+
+            <a href="#" class="shop-btn">
+                Shop Now →
+            </a>
+
+        </div>
+
+        <img
+            class="hero-image"
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=900&q=80"
+            alt="Shopping Collection">
+
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="section">
+
+        <div class="section-heading">
+            <h2>Shop By Category</h2>
+            <p>Explore our most popular shopping categories</p>
+        </div>
+
+        <div class="categories">
+
+            <!-- Cosmetics -->
+
+            <div class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80"
+                    alt="Cosmetics">
+
+                <div class="category-info">
+                    <h3>Cosmetics</h3>
+                    <p>Beauty & skincare essentials</p>
+                    <a href="#" class="explore">Explore →</a>
+                </div>
+
+            </div>
+
+
+            <!-- Clothes -->
+
+            <div class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=700&q=80"
+                    alt="Clothes">
+
+                <div class="category-info">
+                    <h3>Clothes</h3>
+                    <p>Trendy styles for every occasion</p>
+                    <a href="#" class="explore">Explore →</a>
+                </div>
+
+            </div>
+
+
+            <!-- Footwear -->
+
+            <div class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+                    alt="Footwear">
+
+                <div class="category-info">
+                    <h3>Footwear</h3>
+                    <p>Step into comfort & style</p>
+                    <a href="#" class="explore">Explore →</a>
+                </div>
+
+            </div>
+
+
+            <!-- Electronics -->
+
+            <div class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80"
+                    alt="Electronics">
+
+                <div class="category-info">
+                    <h3>Electronics</h3>
+                    <p>Smart gadgets & appliances</p>
+                    <a href="#" class="explore">Explore →</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="section products">
+
+        <div class="section-heading">
+            <h2>Popular Products</h2>
+            <p>Handpicked products you may love</p>
+        </div>
+
+        <div class="product-grid">
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80"
+                    alt="Smart Watch">
+
+                <div class="product-details">
+                    <h3>Smart Watch</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹2,999</div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=700&q=80"
+                    alt="Skincare">
+
+                <div class="product-details">
+                    <h3>Skincare Essentials</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹799</div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=700&q=80"
+                    alt="Fashion">
+
+                <div class="product-details">
+                    <h3>Casual Wear</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹1,299</div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=80"
+                    alt="Home Appliance">
+
+                <div class="product-details">
+                    <h3>Home Appliance</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹1,899</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-column">
+
+                <h3>Shopit</h3>
+
+                <p>
+                    Your everyday destination for fashion,
+                    beauty, footwear and electronics.
+                    Shop smarter. Live better.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Shop</h3>
+
+                <a href="#">Cosmetics</a>
+                <a href="#">Clothes</a>
+                <a href="#">Footwear</a>
+                <a href="#">Electronics</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Customer Care</h3>
+
+                <a href="#">Contact Us</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQs</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Company</h3>
+
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Careers</a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Shopit. All Rights Reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>
+```
